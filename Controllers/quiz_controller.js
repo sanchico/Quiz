@@ -11,3 +11,7 @@ exports.answer = function(req,res) {
 		res.render('quizes/answer', {respuesta: 'La cagaste'});
 	}
 };
+
+exports.author = function(req,res) {
+	res.render('author');
+}
