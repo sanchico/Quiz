@@ -7,7 +7,7 @@ exports.load = function(req, res, next, quizId) {
 			if (quiz) {
 				req.quiz = quiz;
 				next();
-			} else { next ( new errror('No existe quizId=' + quizId)); }
+			} else { next ( new Error('No existe quizId=' + quizId)); }
 		}
 	).catch(function(error){ next(error);});
 }
@@ -37,3 +37,5 @@ exports.answer = function(req,res) {
 exports.author = function(req,res) {
 	res.render('author');
 }
+
+// GET /quizes?search=texto_a_buscar
