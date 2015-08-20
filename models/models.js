@@ -31,8 +31,16 @@ con el archivo quiz.js. El método import transfiere el modelo almacenado en el
 archivo quiz.js a la variable Quiz*/
 var quiz_path = path.join(__dirname,'quiz');
 var Quiz = sequelize.import(quiz_path);
+// Importar definicion de la tabla Comment
+var comment_path = path.join(__dirname,'comment');
+var Comment = sequelize.import(comment_path);
+
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
 //exportar definición de tabla Quiz para que se pueda usar en otras partes
 exports.Quiz = Quiz;
+exports.Comment = Comment;
 //sequelize.sync() crea e inicializa tabla de preguntas en DB
 sequelize.sync().then(function() {
   // then() ejecuta el manejador una vez creada la tabla
