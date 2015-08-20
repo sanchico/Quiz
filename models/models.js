@@ -39,12 +39,26 @@ sequelize.sync().then(function() {
   Quiz.count().then(function (count){
     if(count === 0) { //la tabla se inicializa sólo si está vacía
       Quiz.create({ pregunta: 'Capital de Italia',
-                    respuesta: 'Roma'
+                    respuesta: 'Roma',
+                    tema: 'Humanidades'
                   });
       Quiz.create({ pregunta: 'Capital de portugal',
-                    respuesta: 'Lisboa'
+                    respuesta: 'Lisboa',
+                    tema: 'Humanidades'
                   })
       .then(function(){console.log('Base de datos inicializada')});
     };
+/*    if (Quiz.options.tema) {
+      console.log("Ya existe el campo tema");
+    } else {
+      console.log("No existe el campo tema");
+//      console.log(Quiz.getTableName());
+//      Quiz.addColumn("tema");
+        sequelize.query("ALTER TABLE Quizzes ADD COLUMN tema;")
+        .spread(function(results, metadata) {
+        console.log(metadata);
+      })
+    }
+    */
   });
 });
