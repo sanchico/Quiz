@@ -74,7 +74,7 @@ exports.edit = function(req, res) {
 
 	res.render('quizes/edit', {quiz: quiz, errors: []});
 };
-// PUT /quizes/:id
+// PUT /quizes:id
 exports.update = function(req,res) {
 	req.quiz.pregunta  = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
@@ -84,7 +84,7 @@ exports.update = function(req,res) {
 	.then(
 		function(err) {
 			if (err) {
-				res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
+				res.render('quizes/edit', {quiz: req.quiz, errors: err.errors})
 			} else {
 				req.quiz
 				.save( {fields: ["pregunta", "respuesta"]})
@@ -92,4 +92,11 @@ exports.update = function(req,res) {
 			}
 		}
 	);
+};
+
+// DELETE /quizes/:id
+exports.destroy = function(req, res) {
+	req.quiz.destroy().then( function() {
+		res.redirect('/quizes');
+	}).catch(function(error){next(error)});
 };
