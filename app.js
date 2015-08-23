@@ -10,7 +10,7 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var https = require('https');
-var fs = requier¡¡re('fs');
+var fs = require('fs');
 
 var app = express();
 
